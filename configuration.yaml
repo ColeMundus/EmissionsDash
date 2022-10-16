@@ -1,0 +1,292 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+sensor:
+  - platform: rest
+    name: "West Campus Boiler 3 Gas Flow"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8Pw5ikAAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcUFBfVEIxXzJfV0NCM19TQ0FMRURfR0FTX0ZMT1c/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "klbs/hr"
+    icon: mdi:water-boiler
+  - platform: rest
+    name: "HBLR Gas Flow"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8PwpR0AAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcSEJMUl9HQVNfRkxPVw/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "kscf/hr"
+    icon: mdi:water-boiler
+  - platform: rest
+    name: "Boiler 7 Adjusted Gas Flow"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8PwCioAAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcUFBfQjdfR0FTX0ZMT1dfQURK/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "kscf/hr"
+    icon: mdi:water-boiler
+  - platform: rest
+    name: "Boiler 8 Adjusted Gas Flow"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8PwCyoAAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcUFBfQjhfR0FTX0ZMT1dfQURK/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "kscf/hr"
+    icon: mdi:water-boiler
+  - platform: rest
+    name: "Fuel Gas Flow Ind"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8PwcSoAAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcUFBfQjEwX0ZMVF8yMzVfRlQ/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value * 1000 | round(3)}}
+      {% endif %}
+    unit_of_measurement: "kscf/hr"
+    icon: mdi:water-boiler
+  - platform: rest
+    name: "Boiler 11 Gas Flow Totalized Yesterday"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8PwTwAAAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcUFBfQUYtWEktODIyMEE/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "kscf"
+    icon: mdi:water-boiler
+  - platform: rest
+    name: "Boilier 12 Natural Gas Flow"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8Pwb3sAAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcUFBfQkxSMTJfRlRfMDA2X0tTQ0ZI/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "kscf/hr"
+    icon: mdi:water-boiler
+  - platform: rest
+    name: "GG1 Fuel Gas Flow"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8PwBi8AAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcUFBfR0cxX0ZVRUxfRkxPVw/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value * 1000 | round(3)}}
+      {% endif %}
+    unit_of_measurement: "kscf/hr"
+    icon: mdi:fire
+  - platform: rest
+    name: "GG2 Fuel Gas Flow"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8PwCC8AAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcUFBfR0cyX0ZVRUxfRkxPVw/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value * 1000 | round(3)}}
+      {% endif %}
+    unit_of_measurement: "kscf/hr"
+    icon: mdi:fire
+  - platform: rest
+    name: "GG3 Fuel Gas Flow"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8PwCi8AAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcUFBfR0czX0ZVRUxfRkxPVw/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value * 1000 | round(3)}}
+      {% endif %}
+    unit_of_measurement: "kscf/hr"
+    icon: mdi:fire
+  - platform: rest
+    name: "GG4 Fuel Gas Flow"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8PwDC8AAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcUFBfR0c0X0ZVRUxfRkxPVw/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value * 1000 | round(3)}}
+      {% endif %}
+    unit_of_measurement: "kscf/hr"
+    icon: mdi:fire
+  - platform: rest
+    name: "Today Electric Purchased"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8PwIgMAAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcUFBfRUxFQ1RSSUNfUFVSQ0g/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "MW"
+    icon: mdi:transmission-tower-export
+  - platform: rest
+    name: "Today Electric Purchased"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1DPSeBeuukhFUGh_VBA7Ni8PwIgMAAAUElTRVJWRVIuRkFDSUxJVElFUy5VSU9XQS5FRFVcUFBfRUxFQ1RSSUNfUFVSQ0g/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "MW"
+    icon: mdi:transmission-tower-export
+  - platform: rest
+    name: "CO Total"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1AbEAVYciAZHVU6DzQbJjxTxWwlZu9V7dJ6RGuHFS_ZKR9xgBJLlqJ1weE-L_RNcPAj99ASVRTTlQyMjU5XFBJREItQUZcVU5JVkVSU0lUWSBPRiBJT1dBXEVNSVNTSU9OfENPIFRPVEFMIDEgTU9OVEg/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "tons"
+    icon: mdi:molecule-co2
+  - platform: rest
+    name: "VOC Total"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1AbEAVYciAZHVU6DzQbJjxTxWwlZu9V7dJ6RGuHFS_ZKR9xg5qAnpKu5yUiWlNpHMpaMeASVRTTlQyMjU5XFBJREItQUZcVU5JVkVSU0lUWSBPRiBJT1dBXEVNSVNTSU9OfFZPQyBUT1RBTCAxIE1PTlRI/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "tons"
+    icon: mdi:nuke
+  - platform: rest
+    name: "SO2 Total"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1AbEAVYciAZHVU6DzQbJjxTxWwlZu9V7dJ6RGuHFS_ZKR9xgiYbRaoN9f0uE86a3UoszYgSVRTTlQyMjU5XFBJREItQUZcVU5JVkVSU0lUWSBPRiBJT1dBXEVNSVNTSU9OfFNPMiBUT1RBTCAxIE1PTlRI/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "tons"
+    icon: mdi:chemical-weapon
+  - platform: rest
+    name: "NOx Total"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1AbEAVYciAZHVU6DzQbJjxTxWwlZu9V7dJ6RGuHFS_ZKR9xgZp_fzNAKs0eKAnaToqPjqASVRTTlQyMjU5XFBJREItQUZcVU5JVkVSU0lUWSBPRiBJT1dBXEVNSVNTSU9OfE5PWCBUT1RBTCAxIE1PTlRI/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "tons"
+    icon: mdi:chemical-weapon
+  - platform: rest
+    name: "PM Total"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1AbEAVYciAZHVU6DzQbJjxTxWwlZu9V7dJ6RGuHFS_ZKR9xg5W1gyw68B0G3-KcGVfTZgASVRTTlQyMjU5XFBJREItQUZcVU5JVkVSU0lUWSBPRiBJT1dBXEVNSVNTSU9OfFBNIFRPVEFMIDEgTU9OVEg/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "tons"
+    icon: mdi:weather-dust
+  - platform: rest
+    name: "PM10 Total"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1AbEAVYciAZHVU6DzQbJjxTxWwlZu9V7dJ6RGuHFS_ZKR9xgs2X4pXUx60yjb3_5uh1zqASVRTTlQyMjU5XFBJREItQUZcVU5JVkVSU0lUWSBPRiBJT1dBXEVNSVNTSU9OfFBNMTAgVE9UQUwgMSBNT05USA/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "tons"
+    icon: mdi:weather-dust
+  - platform: rest
+    name: "PM25 Total"
+    resource: https://itsnt2259.iowa.uiowa.edu/piwebapi/streams/F1AbEAVYciAZHVU6DzQbJjxTxWwlZu9V7dJ6RGuHFS_ZKR9xg48o7yzsWnkiSWLUIbDm7dQSVRTTlQyMjU5XFBJREItQUZcVU5JVkVSU0lUWSBPRiBJT1dBXEVNSVNTSU9OfFBNMjUgVE9UQUwgMSBNT05USA/value
+    authentication: basic
+    username: mundus
+    password: !secret hawkid_password
+    value_template: >
+      {% if value_json.Value < 0 %}
+        0.0
+      {% else %}
+        {{ value_json.Value | round(3)}}
+      {% endif %}
+    unit_of_measurement: "tons"
+    icon: mdi:weather-dust

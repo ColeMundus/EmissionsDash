@@ -1,0 +1,144 @@
+views:
+  - title: Home
+    cards:
+      - type: grid
+        cards:
+          - type: custom:button-card
+            entity: sensor.today_electric_purchased
+            show_state: true
+            name: Grid Energy
+            color_type: card
+            color: Yellow
+            aspect_ratio: 1/1
+          - type: custom:button-card
+            entity: sensor.co2_signal_grid_fossil_fuel_percentage
+            show_state: true
+            name: Grid Fossil Fuel
+            color_type: card
+            color: '#a84032'
+            aspect_ratio: 1/1
+          - type: custom:button-card
+            entity: sensor.co2_signal_co2_intensity
+            show_state: true
+            name: Grid CO Intensity
+            color_type: card
+            color: '#a84032'
+            aspect_ratio: 1/1
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Total Monthly Emissions
+          - square: true
+            columns: 4
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: sensor.co_total
+                show_state: true
+                color_type: card
+                color: '#a84032'
+                aspect_ratio: 1/1
+              - type: custom:button-card
+                entity: sensor.voc_total
+                show_state: true
+                color_type: card
+                color: '#a84032'
+                aspect_ratio: 1/1
+              - type: custom:button-card
+                entity: sensor.so2_total
+                show_state: true
+                color_type: card
+                color: '#a84032'
+                aspect_ratio: 1/1
+              - type: custom:button-card
+                entity: sensor.nox_total
+                show_state: true
+                color_type: card
+                color: '#a84032'
+                aspect_ratio: 1/1
+              - type: custom:button-card
+                entity: sensor.pm_total
+                show_state: true
+                color_type: card
+                color: '#a84032'
+                aspect_ratio: 1/1
+              - type: custom:button-card
+                entity: sensor.pm10_total
+                show_state: true
+                color_type: card
+                color: '#a84032'
+                aspect_ratio: 1/1
+              - type: custom:button-card
+                entity: sensor.pm25_total
+                show_state: true
+                color_type: card
+                color: '#a84032'
+                aspect_ratio: 1/1
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Boilers
+          - square: true
+            columns: 4
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: sensor.west_campus_boiler_3_gas_flow
+                show_state: true
+                name: Boiler 3
+                color_type: card
+                color: '#32a8a0'
+                aspect_ratio: 1/1
+              - type: custom:button-card
+                entity: sensor.boiler_7_adjusted_gas_flow
+                show_state: true
+                name: Boiler 7
+                color_type: card
+                color: '#32a8a0'
+                aspect_ratio: 1/1
+              - type: custom:button-card
+                entity: sensor.boiler_8_adjusted_gas_flow
+                show_state: true
+                name: Boiler 8
+                color_type: card
+                color: '#32a8a0'
+                aspect_ratio: 1/1
+              - type: custom:button-card
+                entity: sensor.boilier_12_natural_gas_flow
+                show_state: true
+                name: Boiler 12
+                color_type: card
+                color: '#32a8a0'
+                aspect_ratio: 1/1
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: '  Climate'
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: weather.openweathermap
+                use_entity_picture: false
+              - type: entity
+                entity: sensor.openweathermap_humidity
+              - type: entity
+                entity: sensor.openweathermap_wind_speed
+                icon: mdi:weather-windy
+          - type: custom:sun-card
+          - type: weather-forecast
+            entity: weather.forecast_engie
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Solar Forcast
+          - type: grid
+            cards:
+              - type: custom:button-card
+                entity: sensor.energy_production_today
+                name: Today's Production
+                show_state: true
+                color_type: card
+                color: green
+                aspect_ratio: 1/1
+                icon: mdi:solar-power
+title: University of Iowa Emissions Dashboard
